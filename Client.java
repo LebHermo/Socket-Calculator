@@ -19,7 +19,7 @@ public class Client {
 
             if (newAmount <= 0) {
                 System.out.println("Invalid amount. Please enter a positive number");
-
+                System.exit(0);
             } else {
                 System.out.println("Choose currency to convert to (a - USD, b - UAE, c - GBP, d - JPY):");
                 String choice = scan.nextLine();
@@ -29,6 +29,8 @@ public class Client {
                     ps.println(newAmount + "," + choice);
                 } else {
                     System.out.println("Invalid input. Please choose among the provided choices.");
+                    System.exit(0);
+
                 }
 
                 // Receive from server
@@ -38,6 +40,7 @@ public class Client {
                     System.out.println("Converted amount: PHP " + newResponse);
                 } catch (NumberFormatException e) {
                     System.out.println("Invalid input");
+                    System.exit(0);
                 }                
             }
         } catch (NumberFormatException e){
