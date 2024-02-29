@@ -35,20 +35,7 @@ public class Client {
 
                 // Receive from server
                 String response = isc.nextLine();
-                switch (choice){
-                    case "a":
-                        System.out.println("Converted amount: USD " + response);
-                        break;
-                    case "b":
-                       System.out.println("Converted amount: UAE " + response);
-                        break;
-                    case "c":
-                        System.out.println("Converted amount: GBP " + response);
-                        break;
-                    case "d":
-                        System.out.println("Converted amount: JPY " + response);
-                        break;
-                }
+                System.out.println(response);
             }
         } catch (NumberFormatException e){
             System.out.println("Invalid input. Please enter a valid number");
