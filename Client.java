@@ -26,22 +26,29 @@ public class Client {
 
                 if (isValidChoice(choice)){
                     // Send to server
+                    choice = choice.toLowerCase();
                     ps.println(newAmount + "," + choice);
                 } else {
                     System.out.println("Invalid input. Please choose among the provided choices.");
                     System.exit(0);
-
                 }
 
                 // Receive from server
                 String response = isc.nextLine();
-                try {
-                    double newResponse = Double.parseDouble(response);
-                    System.out.println("Converted amount: PHP " + newResponse);
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid input");
-                    System.exit(0);
-                }                
+                switch (choice){
+                    case "a":
+                        System.out.println("Converted amount: USD " + response);
+                        break;
+                    case "b":
+                       System.out.println("Converted amount: UAE " + response);
+                        break;
+                    case "c":
+                        System.out.println("Converted amount: GBP " + response);
+                        break;
+                    case "d":
+                        System.out.println("Converted amount: JPY " + response);
+                        break;
+                }
             }
         } catch (NumberFormatException e){
             System.out.println("Invalid input. Please enter a valid number");

@@ -35,7 +35,7 @@ public class Server {
                         convertedAmount = toJPY(amount);
                         break;
                     default:
-                        convertedAmount = 69;
+                        convertedAmount = 0;
                         break;
                 }
                 // Send to client
