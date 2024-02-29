@@ -13,22 +13,25 @@ public class Client {
             PrintStream ps = new PrintStream(socket.getOutputStream());
             Scanner isc = new Scanner(socket.getInputStream());
 
+            // User input here
             System.out.print("Enter the amount in PHP (Philippine Pesos): ");
-            String amount = scan.nextLine();
-            double newAmount = Double.parseDouble(amount);
+            double amount = scan.nextDouble();
+            scan.nextLine();
 
-            if (newAmount <= 0) {
+            if (amount <= 0) { //If amount is negative or 0
                 System.out.println("Invalid amount. Please enter a positive number");
                 System.exit(0);
+
             } else {
                 System.out.println("Choose currency to convert to (a - USD, b - UAE, c - GBP, d - JPY):");
                 String choice = scan.nextLine();
 
-                if (isValidChoice(choice)){
+                if (isValidChoice(choice)){ 
                     // Send to server
                     choice = choice.toLowerCase();
-                    ps.println(newAmount + "," + choice);
-                } else {
+                    ps.println(amount + "," + choice);
+                    
+                } else { //If choice is not abcd
                     System.out.println("Invalid input. Please choose among the provided choices.");
                     System.exit(0);
                 }
