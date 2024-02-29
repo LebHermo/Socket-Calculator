@@ -15,24 +15,10 @@ public class Server {
                 PrintStream ps = new PrintStream(socket.getOutputStream());
 
                 // Receive amount
-                double amount;
-                try {
-                    amount = sc.nextDouble();
-                    sc.nextLine();
-                    if (amount <= 0) {
-                        ps.println("Invalid amount. Please enter a positive number.");
-                        return;
-                    }
-                } catch (Exception e) {
-                    ps.println("Invalid amount format. Please enter a valid number.");
-                    return;
-                }
-
-                // Receive choice
-                String choice = sc.nextLine().trim();
-                if (!isValidChoice(choice)) {
-                    ps.println("Invalid choice. Please enter a valid option (a, b, c, d).");
-                }
+                String inputLine = sc.nextLine();
+                String[] parts = inputLine.split(",");
+                double amount = Double.parseDouble(parts[0]);
+                String choice = parts[1].trim();
 
                 double convertedAmount;
                 switch (choice) {
@@ -49,9 +35,9 @@ public class Server {
                         convertedAmount = toJPY(amount);
                         break;
                     default:
-                        convertedAmount = 0; // Invalid choice
+                        convertedAmount = 69;
+                        break;
                 }
-
                 // Send to client
                 ps.println(convertedAmount);
 
@@ -64,10 +50,6 @@ public class Server {
                     e.printStackTrace();
                 }
             }
-        }
-
-        private static boolean isValidChoice(String choice) {
-            return choice.length() == 1 && "abcd".contains(choice.toLowerCase());
         }
 
         public static double toUSD(double num) {
